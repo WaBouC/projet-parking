@@ -1,7 +1,8 @@
 class Parking:
 
     def __init__(self):
-        pass
+        self.niv = 1
+        self.place = 0
 
 class Voiture:
 
@@ -16,6 +17,6 @@ class Voiture:
                f"(marque : {self.ma})",
                f"(proprietaire : {self.pr})",
                f"(abonnement : {self.ab})")
-    
+
 voiture1 = Voiture(12, "BMW", "Jean", True)
 voiture1.information()
