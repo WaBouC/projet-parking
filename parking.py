@@ -117,8 +117,8 @@ class Parking:
         liste_places = []
         for voiture in self.abonnes:
             if voiture.num_place != None:
-                niv = voiture.num_place // 100
-                place = voiture.num_place % 100
+                niv = (voiture.num_place + 100) // 100
+                place = (voiture.num_place + 100) % 100
                 if niv == 1:
                     if place in self.place_niv1:
                         if self.place_niv1[place] != False:
@@ -259,9 +259,9 @@ print(voiture1.information())
 
 #ajout des abonnés et ajout des places d'abonnées manuelement
 parking.abonnement(voiture1)
-voiture1.num_place = 150
+voiture1.num_place = 50
 parking.abonnement(voiture2)
-voiture2.num_place = 250
+voiture2.num_place = 150
 
 #Cela montre si il y a une voiture. Si oui = True, si non = False
 parking.si_voiture(1, 50)
@@ -277,7 +277,7 @@ parking.ajout_place(1, 10, voiture2)
 print(parking.nombre_places_libres())
 
 #affiche le niveau choisi
-parking.afficher_niveau(3)
+parking.afficher_niveau(2)
 
 #montre les places d'abonnés occupées
 print(parking.places_abonnes_occupees())
