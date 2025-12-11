@@ -10,6 +10,9 @@ class Parking:
         self.abonnes = []
 
     def place(self):
+        """
+        création des étages de parking
+        """
         for i in range(80):
             self.place_niv1[i] = False
             self.place_niv2[i] = False
@@ -18,6 +21,9 @@ class Parking:
             self.place_niv5[i] = False
     
     def abonnement(self, voiture):
+        """
+        si la voiture n'est pas abonnés, demande si elle veux s'abonnés sinon dit qu'elle est déjà abonnés
+        """
         if voiture.ab == False:
             a = str(input("voulez-vous vous abonnez : "))
             if a == "oui" or a == "Oui":
@@ -27,6 +33,9 @@ class Parking:
             print("vous êtes déjà abonné")
     
     def desabonner(self, voiture):
+        """
+        si la voiture est abonnés, demande si elle veux se desabonnés
+        """
         if voiture.ab == True:
                 a = str(input("voulez-vous vous désabonner ? : "))
                 if a == "oui" or a == "Oui":
@@ -35,6 +44,9 @@ class Parking:
                         self.abonnes.remove(voiture)
 
     def si_voiture(self, niv, place):
+        """
+        vérifie si une place est libre et demande si on voir qui l'occupe
+        """
         if niv == 1:
             if place in self.place_niv1:
                 if self.place_niv1[place] != False:
@@ -80,6 +92,9 @@ class Parking:
                     return True
         
     def ajout_place(self, niv, place, voiture):
+        """
+        si la place est libre la voiture la prend sinon elle peux pas prendre la place
+        """
         if parking.si_voiture(niv, place) == True:
             print("vous avez pris la place")
             if niv == 1:
@@ -96,6 +111,9 @@ class Parking:
             print("vous pouvez pas prendre la place")
 
     def places_abonnes_occupees(self):
+        """
+        vérifie qu'elle place d'abonnés est prise
+        """
         liste_places = []
         for voiture in self.abonnes:
             if voiture.num_place != None:
@@ -129,6 +147,9 @@ class Parking:
         return liste_places
 
     def nombre_places_libres(self):
+        """
+        cela conte le nombre de place libre
+        """
         nb = 0
         places_abonnes = []
         for voiture in self.abonnes:
@@ -154,6 +175,9 @@ class Parking:
         return nb
 
     def afficher_niveau(self, niv):
+        """
+        cela affiche le niveau demandé
+        """
         if niv == 1:
             print(f"Niveau {niv}:")
             for i in range(80):
@@ -190,13 +214,6 @@ class Parking:
                 else:
                     print(f"Place {400+i}: {self.place_niv5[i]}")
 
-    def __str__(self):
-        return (f"{self.place_niv1}"
-                f"{self.place_niv2}"
-                f"{self.place_niv3}"
-                f"{self.place_niv4}"
-                f"{self.place_niv5}")
-
 class Voiture:
 
     def __init__(self, immatriculation , marque , proprietaire , abonnement):
@@ -219,6 +236,9 @@ class Voiture:
         return self.ab
 
     def information(self):
+        """
+        Cela retorune les informations d'une voiture
+        """
         return (f"(immatriculation : {self.im})",
                f"(marque : {self.ma})",
                f"(proprietaire : {self.pr})",
@@ -257,7 +277,7 @@ parking.ajout_place(1, 10, voiture2)
 print(parking.nombre_places_libres())
 
 #affiche le niveau choisi
-parking.afficher_niveau(1)
+parking.afficher_niveau(3)
 
 #montre les places d'abonnés occupées
 print(parking.places_abonnes_occupees())
